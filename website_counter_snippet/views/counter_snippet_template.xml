@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <template id="counter_snippet" name="Counter Snippet">
+        <section class="container">
+            <div class="row">
+                    <div class="col-lg-4 col-md-6 odoo-counter" data-target="100">0</div>
+                    <div class="col-lg-4 col-md-6 odoo-counter" data-target="200">0</div>
+                    <div class="col-lg-4 col-md-6 odoo-counter" data-target="300">0</div>
+            </div>
+        </section>
+    </template>
+</odoo>

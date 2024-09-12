@@ -1,0 +1,153 @@
+<!-- <odoo>
+
+<template id="create_task_form" name="Create Task Form">
+    <t t-call="website.layout">
+        <div class="container">
+            <form action="/create/task/submit" method="post">
+                <t t-if="project_id">
+                    <input type="hidden" name="project_id" t-att-value="project_id"/>
+                </t>
+                <div class="form-group">
+                    <label for="task_name">Task Name</label>
+                    <input type="text" class="form-control" id="task_name" name="task_name" required="required"/>
+                </div>
+                <div class="form-group">
+                    <label for="description">Description</label>
+                    <textarea class="form-control" id="description" name="description"></textarea>
+                </div>
+                
+                <div class="form-group">
+                    <label for="deadline">Deadline</label>
+                    <input type="date" class="form-control" id="deadline" name="deadline"/>
+                </div>
+                <button type="submit" class="btn btn-primary">Create Task</button>
+            </form>
+        </div>
+    </t>
+</template>
+
+</odoo> -->
+<odoo>
+    <template id="portal_my_tasks_priority_widget_template" name="Priority Widget Template">
+        <div class="priority-widget">
+            <label for="priority">Priority</label>
+            <i class="fa fa-star-o o_priority_star" data-value="1" title="middle" onclick="setPriority(1)"></i>
+            <i class="fa fa-star-o o_priority_star" data-value="2" title="high" onclick="setPriority(2)"></i>
+            <i class="fa fa-star-o o_priority_star" data-value="3" title="very high" onclick="setPriority(3)"></i>
+
+
+            <input type="hidden" name="priority" />
+        </div>
+    </template>
+
+
+    <template id="create_task_form" name="Create Task Form">
+        <t t-call="website.layout">
+            <div class="container mt-3 mb-3">
+                <form action="/create/task/submit" method="post">
+                    <div class="alert alert-info" role="alert">
+                        Important: If you need to attach a file, you can do so after creating the task by viewing it in the chatter.
+                    </div>
+    
+                    <t t-if="project_id">
+                        <input type="hidden" name="project_id" t-att-value="project_id"/>
+                    </t>
+                    <div class="form-group">
+                        <label for="task_name">Subject</label>
+                        <input type="text" class="form-control" id="task_name" name="task_name" required="required"/>
+                    </div>
+                    <div class="form-group">
+                        <label for="allowed_projects">Support Contract</label>
+                        <select class="form-control" id="allowed_projects" name="project_id" required="required">
+                            <option value="">Select a Contract</option>
+                            <t t-foreach="allowed_projects" t-as="project">
+                                <option t-att-value="project.id">
+                                    <t t-esc="project.name"/>
+                                </option>
+                            </t>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="user_name_company_id">Customer Name </label>
+                        <select name="user_name_company_id" id="user_name_company_id" class="form-control" required="required">
+                            <option value="">Select Customer Name</option>
+                            <t t-foreach="users_in_same_company" t-as="user_name_company">
+                                <option t-att-value="user_name_company.id">
+                                    <t t-esc="user_name_company.name"/>
+                                </option>
+                            </t>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="ticket_type_id">Ticket Type</label>
+                        <select name="ticket_type_id" id="ticket_type_id" class="form-control" required="required">
+                            <option value="">Select Ticket Type</option>
+                            <t t-foreach="ticket_types" t-as="ticket_type">
+                                <option t-att-value="ticket_type.id">
+                                    <t t-esc="ticket_type.x_name"/>
+                                </option>
+                            </t>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="tag_type_id">Tag </label>
+                        <select name="tag_type_id" id="tag_type_id" class="form-control" required="required">
+                            <option value="">Select a Tag</option>
+                            <t t-foreach="tag_types" t-as="tag_type">
+                                <option t-att-value="tag_type.id">
+                                    <t t-esc="tag_type.name"/>
+                                </option>
+                            </t>
+                        </select>
+                    </div>
+                    <div class="form-group mt-3 mb-3">
+                        <label for="end_user_input">End User  <i class="oi oi-search"/>
+                        </label>
+                        <input id="end_user_input" list="users_datalist" name="end_user_id_display" placeholder="Search For End User" oninput="updateInputValue(this)" />
+                        <input type="hidden" id="end_user_id" name="end_user_id" />
+                        <datalist id="users_datalist">
+                            <t t-set="end_users" t-value="request.env['project.task'].get_users_for_datalist()"/>
+                            <t t-foreach="end_users" t-as="end_user">
+                                <option t-att-value="end_user.name" t-att-data-id="end_user.id">
+                                    <t t-esc="end_user.name"/>
+                                </option>
+                            </t>
+                        </datalist>
+                    </div>
+
+
+
+
+                    <!-- <div class="form-group">
+                    <label for="end_user_name">End User</label>
+    
+
+                            <select id="end_user_suggestions">
+                                <t t-foreach="end_users" t-as="end_user">
+                                     <option t-att-value="end_user.id">
+                                            <t t-esc="end_user.name"/>
+                                        </option>
+                                </t>
+                            </select>
+                </div> -->
+
+
+                    <div class="form-group">
+                        <label for="description">Description</label>
+                        <textarea class="form-control" id="description" name="description" required="required"></textarea>
+                    </div>
+                    <div class="d-flex align-items-center gap-2">
+                        <t t-call="IH_Project_Request.portal_my_tasks_priority_widget_template">
+                            <!-- <t t-set="classes" t-translation="off">fs-4</t> -->
+                        </t>
+                    </div>
+                    <button type="submit" class="btn btn-primary mt-3 mb-3">Create Task</button>
+                    <a href="/my/tasks" class="btn btn-secondary mt-3 mb-3" role="button">
+                        <i class="oi oi-close"/>
+ Cancel
+                    </a>
+                </form>
+            </div>
+        </t>
+    </template>
+</odoo>

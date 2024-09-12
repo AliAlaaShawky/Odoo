@@ -1,0 +1,80 @@
+<odoo>
+
+  <record id="order_view_tree" model="ir.ui.view">
+      <field name="name"> Order Tree </field>
+      <field name="model">order</field>
+      <field name="arch" type="xml">
+         <tree multi_edit="1"    >
+          <field name ="name"/>
+          <field name ="company"/>
+          <field name ="address" optional="1"/>
+          
+
+
+         </tree>
+      
+      </field>
+  
+  </record>
+
+
+  <record id="order_view_form" model="ir.ui.view">
+      <field name="name"> Order Tree </field>
+      <field name="model">order</field>
+      <field name="arch" type="xml">
+          <form >
+              <sheet>
+                  <div class="oe_title">
+                      <label for="name"/>
+                      <h1 >
+                          <field name ="name"/>   
+                      </h1>
+
+                  </div>
+                  <group>
+
+                      <group string="Genral Info">
+                          
+                          <field name ="company"/>
+                          <field name ="address"/>
+                    
+                          
+                      </group>
+                      <group>
+                          
+                          
+                      </group>
+                      
+                  </group>
+              </sheet>
+          </form>
+         
+      
+      </field>
+  
+  </record>
+  <record id="order_view_search" model="ir.ui.view">
+      <field name="name"> order Search </field>
+      <field name="model">order</field>
+      <field name="arch" type="xml">
+         <search>
+          <field name ="name"/>
+          
+          <filter name="group_company" string="company" context="{'group_by':'company'}" />
+
+
+
+         </search>
+      
+      </field>
+  
+  </record>
+<record id="order_action" model="ir.actions.act_window">
+  <field name="name"> Oreder</field>
+  <field name="res_model">order</field>
+
+</record>
+<menuitem id="all_orders" name="All orders" parent="all_ticket" action="order_action"/>
+
+ 
+</odoo>

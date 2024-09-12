@@ -1,0 +1,12 @@
+<odoo>
+    <record id="view_order_search_inherit" model="ir.ui.view">
+        <field name="name">sale.order.search.inherit</field>
+        <field name="model">sale.order</field>
+        <field name="inherit_id" ref="sale.view_order_search"/>
+        <field name="arch" type="xml">
+            <filter string="My Custom Filters" position="after">
+                <filter name="date_from_to" string="Date From/To" domain="[('date_order','&gt;=',self.date_from), ('date_order','&lt;=',self.date_to)]"/>
+            </filter>
+        </field>
+    </record>
+</odoo>

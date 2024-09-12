@@ -1,0 +1,36 @@
+<odoo>
+  <data>
+      <record id="hrview_inherited" model="ir.ui.view">
+        <field name="name">product view</field>
+        <field name="model">purchase.order</field>
+        <field name="type">form</field>
+        <field name="inherit_id" ref="purchase.purchase_order_form"/>
+        <field name="arch" type="xml">
+           <xpath expr="//field[@name='partner_id']" position="after">
+                <field name="allow_product_domain_id_ids" widget="many2many_tags" invisible="True"/>
+            </xpath>
+            <xpath expr="//field[@name='product_id']" position="attributes">
+                    <attribute name="domain">[('id', 'in', parent.allow_product_domain_id_ids)]</attribute>
+                </xpath>
+            <xpath expr="//field[@name='fiscal_position_id']" position="after">
+                    <field name="order_subject"/>
+            </xpath>
+                <xpath expr="//header" position="inside">
+            
+               
+                        <button string="Grant Approval" type="object" name="grant_approval"  invisible="current_user_name in ('not authorized','غير مصرح') or approval_request_id ==False or current_user_status in ('approved', 'تمت الموافقة') "  />
+
+                                        <button string="Refuse" type="object"  name='refuse' invisible="current_user_name in ('not authorized','غير مصرح') or approval_request_id ==False or current_user_status in ('refused', 'تم الرفض') "/>
+
+                </xpath>
+            <xpath expr="//button[@id='draft_confirm']" position="attributes">
+                    <attribute name="invisible"> approval_request_status  not in ['approved', 'تمت الموافقة']  </attribute>
+                </xpath>
+            
+
+
+
+        </field>
+    </record>
+  </data>
+</odoo>

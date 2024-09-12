@@ -1,0 +1,59 @@
+<!-- custom_sales_extension/views/sale_order_views.xml -->
+
+<odoo>
+    <record id="sale_order_view_form_inherit" model="ir.ui.view">
+        <field name="name">sale.order.form.inherit</field>
+        <field name="model">sale.order</field>
+        <field name="inherit_id" ref="sale.view_order_form"/>
+        <field name="arch" type="xml">
+          <xpath expr="//header" position="inside">
+            <!-- <button string="Get Offer" type="object" name="action_get_offer_button" invisible="state == 'cancel'"  /> -->
+            <button name="action_extend_sale_order_date" string="Extend Order Date" type="object"  invisible="state != 'sale'"/>
+            </xpath>
+             <xpath expr="//field[@name='partner_id']" position="after">
+                    <field name="location_id" readonly="sale_order_date"/>
+                    <field name="sale_order_date"/>
+
+                </xpath>
+        </field>
+    </record>
+      <!-- <record id="view_purchase_order_form_inherit" model="ir.ui.view">
+          <field name="name">purchase.order.form.inherit</field>
+          <field name="model">purchase.order</field>
+          <field name="inherit_id" ref="purchase.purchase_order_form"/>
+          <field name="arch" type="xml">
+            
+            <xpath expr="//field[@name='partner_ref']" position="after">
+              <field name="sales_order_id" readonly="True" />
+              <field name="is_purchase_admin" invisible="True" />
+
+          </xpath>
+          <xpath expr="//button[@name='button_unlock']" position="attributes">
+            <attribute name="invisible"> state != 'done' or sales_order_id != False </attribute>
+        </xpath> 
+
+        
+           <xpath expr="//header" position="inside">
+
+           
+            <button string="Create Sales Order" type="object" name="create_sales_order" invisible="sales_order_id != False "  />
+            <button string="Remove Sales Order" type="object" name="remove_the_offer" invisible="not sales_order_id or is_purchase_admin != True "   />
+
+        </xpath>
+
+        
+  
+          
+      </field>
+  </record> -->
+ <record id="ir_cron_action_to_do" model="ir.cron">
+    <field name="name">Test Action To Do</field>
+    <field name="model_id" ref="sale.model_sale_order"/> <!-- Check and correct the model reference -->
+    <field name="state">code</field>
+    <field name="code">model._cron_update_sale_order_status()</field> <!-- Ensure correct indentation and syntax -->
+    <field name="user_id" ref="base.user_root"/>
+    <field name="interval_number">1</field>
+    <field name="interval_type">days</field>
+    <field name="numbercall">-1</field>
+</record>
+</odoo>

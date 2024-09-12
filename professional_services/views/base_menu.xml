@@ -1,0 +1,7 @@
+<odoo>
+    <data>
+        <menuitem id="ticket_menu_root"  name="Professional Services"
+        web_icon="professional_services,static/description/icon.png"/>
+        <menuitem id="all_ticket" name="Ticket" parent="ticket_menu_root" />
+    </data>
+</odoo>

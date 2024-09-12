@@ -1,0 +1,21 @@
+<odoo>
+<!--    <record id="allow_user_restrictions" model="ir.ui.view">-->
+<!--        <field name="name">allow_sale_user_restrictions</field>-->
+<!--        <field name="model">sale.order</field>-->
+<!--        <field name="inherit_id" ref="sale.view_order_form"/>-->
+<!--        <field name="arch" type="xml">-->
+
+<!--            <xpath expr="//field[@name='partner_id']" position="attributes">-->
+<!--                <attribute name="options" >{'no_create': True, 'no_edit': True}</attribute>-->
+<!--            </xpath>-->
+<!--            <xpath expr="//field[@name='product_template_id']" position="attributes">-->
+<!--                <attribute name="options" >{'no_create': True, 'no_edit': True}</attribute>-->
+<!--            </xpath>-->
+
+
+
+
+
+<!--        </field>-->
+<!--    </record>-->
+</odoo>

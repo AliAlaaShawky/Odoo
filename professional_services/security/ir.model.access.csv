@@ -1,0 +1,9 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_team,access_team,model_team,,1,1,1,1
+access_order,access_order,model_order,,1,1,1,1
+access_ticket,access_ticket,model_customer,,1,1,1,1
+access_customer,access_customer,model_ticket,,1,1,1,1
+access_tags,access_tags,model_tags,,1,1,1,1
+access_enduser,access_enduser,model_enduser,,1,1,1,1
+access_lines,access_lines,model_ticket_line,,1,1,1,1
+access_times,access_times,model_ticket_time,,1,1,1,1

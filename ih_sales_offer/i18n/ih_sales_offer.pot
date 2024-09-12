@@ -1,0 +1,221 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* ih_sales_offer
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 17.0+e\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2024-08-06 07:28+0000\n"
+"PO-Revision-Date: 2024-08-06 10:43+0300\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"Language: ar_EG\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=6; plural=(n==0 ? 0 : n==1 ? 1 : n==2 ? 2 : n%100>=3 && n%100<=10 ? 3 : n%100>=11 && n%100<=99 ? 4 : 5);\n"
+"X-Generator: Poedit 3.4.4\n"
+
+#. module: ih_sales_offer
+#. odoo-python
+#: code:addons/ih_sales_offer/models/models.py:0
+#: code:addons/odoo/custom_addons/ih_sales_offer/models/models.py:0
+#, python-format
+msgid "Associated Sales Order not found"
+msgstr "طلب المبيعات المرتبط غير موجود"
+
+#. module: ih_sales_offer
+#. odoo-python
+#: code:addons/ih_sales_offer/models/models.py:0
+#: code:addons/odoo/custom_addons/ih_sales_offer/models/models.py:0
+#, python-format
+msgid "Associated Sales Order should be a not confirmed order"
+msgstr "يجب أن يكون أمر المبيعات المرتبط أمر غير مؤكد"
+
+#. module: ih_sales_offer
+#: model_terms:ir.ui.view,arch_db:ih_sales_offer.view_purchase_order_wizard_form
+msgid "Cancel"
+msgstr "إلغاء"
+
+#. module: ih_sales_offer
+#: model:ir.model.fields.selection,name:ih_sales_offer.selection__purchase_order_wizard__option__existing
+msgid "Choose Existing Purchase Order"
+msgstr "اختر طلب الشراء الحالي"
+
+#. module: ih_sales_offer
+#: model_terms:ir.ui.view,arch_db:ih_sales_offer.view_purchase_order_wizard_form
+msgid "Confirm"
+msgstr "تأكيد"
+
+#. module: ih_sales_offer
+#: model:ir.model.fields.selection,name:ih_sales_offer.selection__purchase_order_wizard__option__new
+msgid "Create New Purchase Order"
+msgstr "إنشاء طلب شراء جديد"
+
+#. module: ih_sales_offer
+#: model_terms:ir.ui.view,arch_db:ih_sales_offer.view_purchase_order_form_inherit
+msgid "Create Sales Order"
+msgstr "إنشاء أمر مبيعات"
+
+#. module: ih_sales_offer
+#: model:ir.model.fields,field_description:ih_sales_offer.field_purchase_order_wizard__create_uid
+msgid "Created by"
+msgstr "تم الانشاء بواسطة"
+
+#. module: ih_sales_offer
+#: model:ir.model.fields,field_description:ih_sales_offer.field_purchase_order_wizard__create_date
+msgid "Created on"
+msgstr "تاريخ الإنشاء"
+
+#. module: ih_sales_offer
+#: model:ir.model.fields,field_description:ih_sales_offer.field_purchase_order_wizard__customer_id
+msgid "Customer"
+msgstr "العميل"
+
+#. module: ih_sales_offer
+#: model:ir.model.fields,field_description:ih_sales_offer.field_purchase_order_wizard__display_name
+msgid "Display Name"
+msgstr "الاسم"
+
+#. module: ih_sales_offer
+#: model_terms:ir.ui.view,arch_db:ih_sales_offer.sale_order_view_form_inherit
+msgid "Extend Order Date"
+msgstr "تمديد تاريخ الصلاحية"
+
+#. module: ih_sales_offer
+#: model_terms:ir.ui.view,arch_db:ih_sales_offer.sale_order_view_form_inherit
+msgid "Get Offer"
+msgstr "أحصل على عرض"
+
+#. module: ih_sales_offer
+#: model:ir.model.fields,field_description:ih_sales_offer.field_purchase_order_wizard__id
+msgid "ID"
+msgstr "رقم التمييز"
+
+#. module: ih_sales_offer
+#. odoo-python
+#: code:addons/ih_sales_offer/models/sales_order_line.py:0
+#: code:addons/odoo/custom_addons/ih_sales_offer/models/sales_order_line.py:0
+#, python-format
+msgid ""
+"Insufficient stock for product %s in warehouse %s.\n"
+"Available quantity: %s\n"
+"Reserved quantity: %s\n"
+"Total quantity: %s"
+msgstr ""
+""
+"الكمية المتاحة: %s\n"
+"الكمية المحجوزة: %s\n"
+"الكمية الكلية %s"
+
+#. module: ih_sales_offer
+#: model:ir.model.fields,field_description:ih_sales_offer.field_purchase_order__is_purchase_admin
+msgid "Is Purchase User"
+msgstr ""
+
+#. module: ih_sales_offer
+#: model:ir.model.fields,field_description:ih_sales_offer.field_purchase_order_wizard__write_uid
+msgid "Last Updated by"
+msgstr "آخر تحديث بتاريخ"
+
+#. module: ih_sales_offer
+#: model:ir.model.fields,field_description:ih_sales_offer.field_purchase_order_wizard__write_date
+msgid "Last Updated on"
+msgstr "آخر تحديث بتاريخ"
+
+#. module: ih_sales_offer
+#: model:ir.model.fields,field_description:ih_sales_offer.field_purchase_order__offer_added
+msgid "Offer Added"
+msgstr "تمت إضافة العرض"
+
+#. module: ih_sales_offer
+#: model:ir.model.fields,field_description:ih_sales_offer.field_purchase_order_wizard__option
+msgid "Option"
+msgstr "اختيار"
+
+#. module: ih_sales_offer
+#: model:ir.model.fields,field_description:ih_sales_offer.field_purchase_order_wizard__order_id
+msgid "Order"
+msgstr "طلب"
+
+#. module: ih_sales_offer
+#: model_terms:ir.ui.view,arch_db:ih_sales_offer.view_purchase_order_wizard_form
+msgid "Order Lines"
+msgstr "طلبات الشراء"
+
+#. module: ih_sales_offer
+#: model:ir.model,name:ih_sales_offer.model_product_pricelist
+msgid "Pricelist"
+msgstr "قائمة الأسعار"
+
+#. module: ih_sales_offer
+#: model:ir.model.fields,field_description:ih_sales_offer.field_product_product__pricelist_info
+#: model:ir.model.fields,field_description:ih_sales_offer.field_product_template__pricelist_info
+msgid "Pricelist Info"
+msgstr "معلومات قائمة الأسعار"
+
+#. module: ih_sales_offer
+#: model:ir.model,name:ih_sales_offer.model_product_template
+msgid "Product"
+msgstr "منتج"
+
+#. module: ih_sales_offer
+#: model:ir.model.fields,field_description:ih_sales_offer.field_purchase_order_wizard__order_line_ids
+msgid "Products"
+msgstr "منتجات"
+
+#. module: ih_sales_offer
+#: model:ir.model,name:ih_sales_offer.model_purchase_order
+msgid "Purchase Order"
+msgstr "طلب شراء"
+
+#. module: ih_sales_offer
+#: model_terms:ir.ui.view,arch_db:ih_sales_offer.view_purchase_order_wizard_form
+msgid "Purchase Order Options"
+msgstr "اختيارات طلب الشراء"
+
+#. module: ih_sales_offer
+#: model:ir.actions.act_window,name:ih_sales_offer.action_purchase_order_wizard
+#: model:ir.model,name:ih_sales_offer.model_purchase_order_wizard
+msgid "Purchase Order Wizard"
+msgstr "نافذة طلب الشراء"
+
+#. module: ih_sales_offer
+#: model_terms:ir.ui.view,arch_db:ih_sales_offer.view_purchase_order_form_inherit
+msgid "Remove Sales Order"
+msgstr "إزالة طلب البيع"
+
+#. module: ih_sales_offer
+#: model:ir.model.fields,field_description:ih_sales_offer.field_sale_order__sale_order_date
+msgid "Sale Order Date"
+msgstr "تاريخ طلب البيع"
+
+#. module: ih_sales_offer
+#: model:ir.model,name:ih_sales_offer.model_sale_order
+#: model:ir.model.fields,field_description:ih_sales_offer.field_purchase_order__sales_order_id
+msgid "Sales Order"
+msgstr "طلب البيع"
+
+#. module: ih_sales_offer
+#: model:ir.model.fields,field_description:ih_sales_offer.field_sale_order__location_id
+msgid "Source Warehouse"
+msgstr "مستودع المصدر"
+
+#. module: ih_sales_offer
+#: model:ir.actions.server,name:ih_sales_offer.ir_cron_action_to_do_ir_actions_server
+msgid "Test Action To Do"
+msgstr ""
+
+#. module: ih_sales_offer
+#. odoo-python
+#: code:addons/ih_sales_offer/models/models.py:0
+#: code:addons/odoo/custom_addons/ih_sales_offer/models/models.py:0
+#, python-format
+msgid "The offer has already been added to this order."
+msgstr "هذا العرض تم أضافته من قبل"
+
+#. module: ih_sales_offer
+#: model:ir.model.fields,field_description:ih_sales_offer.field_purchase_order_wizard__total_price
+msgid "TotalPrice"
+msgstr "السعر الكلي"

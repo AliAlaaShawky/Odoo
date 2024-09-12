@@ -1,0 +1,7 @@
+<odoo>
+    <data>
+        <menuitem id="meta_data_menu_root"  name="UC APP"/>
+        <menuitem id="properties" name="Properties" parent="meta_data_menu_root" />
+
+    </data>
+</odoo>

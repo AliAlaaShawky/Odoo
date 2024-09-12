@@ -1,0 +1,39 @@
+
+<odoo>
+    <data>
+<!--         
+        <record id="product_template_form_inherit" model="ir.ui.view">
+            <field name="name">product.template.form.inherit</field>
+            <field name="model">product.template</field>
+            <field name="inherit_id" ref="product.product_template_form_view"/>
+            <field name="arch" type="xml">
+                <xpath expr="//sheet/notebook/page[1]" position="after">
+                   
+                    <page string="Warehouse Locations">
+                        <field name="stock_quant_ids" mode="tree">
+                            <tree>
+                                <field name="location_id"/>
+                                <field name="quantity"/>
+                                <field name="lot_id"/>
+                            </tree>
+                        </field>
+                    </page>
+                </xpath>
+            </field>
+        </record> -->
+             <record id="sale_test_view_form_inherit" model="ir.ui.view">
+        <field name="name">sale.order.form.inherit</field>
+        <field name="model">sale.order</field>
+        <field name="inherit_id" ref="sale.view_order_form"/>
+        <field name="arch" type="xml">
+          <xpath expr="//field[@name='product_id']" position="after">
+                    <field name="location_id" domain="[('id', 'in', available_location_ids[0][2])]"/>
+                </xpath>
+        </field>
+    </record>
+
+
+    access_product_template_pricelist_price,ih_.product_template_pricelist_price,model_product_pricelist_price,,1,1,1,1
+
+    </data>
+</odoo>

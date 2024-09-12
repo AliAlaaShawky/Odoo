@@ -1,0 +1,247 @@
+<odoo>
+
+   <template id="PS_Team_id" inherit_id="portal.portal_my_home">
+        <xpath expr="//div[hasclass('o_portal_docs')]" position="inside">
+           
+                    
+                        <t t-call="portal.portal_docs_entry" t-if="False"/>
+                        <t t-call="portal.portal_docs_entry">
+                            <t t-set="icon" t-value="'/helpdesk/static/src/img/tickets.svg'"/>
+                            <t t-set="title">Timeoff &amp; Allocations</t>
+                            <t t-set="url" t-value="'/my/ps'"/>
+                            <t t-set="title">Time Off</t>
+                            <t t-set="config_card" t-value="True"/>
+                        </t>
+                
+               
+        </xpath>
+        
+    </template> 
+<!-- Define the new menu item -->
+    <template id="portal_breadcrumbs" inherit_id="portal.portal_breadcrumbs">
+    <xpath expr="//ol[hasclass('o_portal_submenu')]" position="inside">
+        <li t-if="page_name_view == 'ticket_list_view'" class="breadcrumb-item">
+            <a t-attf-href="timeoff">New TimeOff</a>
+        </li>
+        <li t-if="page_name == 'list_timeoff'" class="breadcrumb-item">
+            <a t-attf-href="/my/ps">My TimeOff</a>
+        </li>
+    </xpath>
+</template>
+
+    <record id="ticket_action" model="ir.actions.act_window">
+    <field name="name"> timeoff </field>
+    <field name="res_model">timeoff</field>
+
+</record>
+
+
+    <template id="manager_support_portal">
+    
+                <!-- Your existing form fields go here -->
+
+                <!-- Add the button to trigger the action -->
+                
+    <t t-call="portal.portal_layout">
+    <t t-call ="portal.portal_table">
+        <thead>
+            <tr class="active">
+                    <th class="text-center">Empolyee Name</th>
+                    <th class="text-center">Type</th>
+                    <th class="text-center">Department</th>
+                    <th class="text-center">Description</th>
+                    <th class="text-center">Start Date</th>
+                    <th class="text-center">End Date</th>
+                    <th class="text-center">Period</th>
+                    <th class="text-center">status</th>
+
+            </tr>
+    
+        </thead>
+    <tbody>
+    <t t-foreach="ticket" t-as="tickets">
+        <tr>
+            <td class="text-center">
+                <t t-out="tickets.all_employee_ids.name"/>
+            </td> 
+            <td class="text-center">
+                <t t-out="tickets.holiday_status_id.name"/>
+            </td> 
+            <td class="text-center">
+                <t t-out="tickets.department_id.name"/>
+            </td> 
+            <td class="text-center">
+                <t t-out="tickets.name"/>
+            </td> 
+            <td class="text-center">
+                <t t-out="tickets.date_from"/>
+            </td> 
+            <td class="text-center">
+                <t t-out="tickets.date_to"/>
+            </td> 
+            <td class="text-center">
+                <t t-out="tickets.duration_display"/>
+            </td> 
+            
+            <td class="text-center">
+                <t t-out="tickets.state"/>
+            </td> 
+            <td class="text-center">
+            <a type="button" t-attf-href="/my/approve/#{tickets.id}" class="btn btn-success">Approve</a>
+            <a type="button" t-attf-href="/my/refuse/#{tickets.id}" class="btn btn-danger">Refuse</a>
+        </td>
+
+        </tr>
+    
+    </t>
+    
+    </tbody>
+    
+    
+    </t>
+    
+    
+    
+    </t>
+    
+
+    
+    </template>
+
+<template id="ticket_view_form" name="TimeOff Form">
+        <t t-call="portal.portal_layout">
+            <div class="container">
+                <h1>Request Time Off</h1>
+                <form action="/create/timeoff" method="post">
+                <div class="form-group">
+                        <label for="employee_id">Employee Name</label>
+                        <input type="text" name="employee_name" id="employee_id" class="form-control" t-att-value="user_name" readonly="readonly"/>
+                    </div>
+                    <div class="form-group">
+                        <label for="holiday_status_id">Leave Type</label>
+                        <select name="holiday_status_id" id="holiday_status_id" class="form-control" >
+                            <t t-foreach="leave_types" t-as="leave_type">
+                                <option t-att-value="leave_type.id">
+                                    <t t-esc="leave_type.name"/>
+                                </option>
+                            </t>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="request_date_from">Request Date From</label>
+                        <input type="date" name="request_date_from" id="request_date_from" class="form-control" />
+                    </div>
+                    <div class="form-group">
+                        <label for="request_date_to">Request Date To</label>
+                        <input type="date" name="request_date_to" id="request_date_to" class="form-control" />
+                    </div>
+                     <div class="form-group">
+                        <label for="half_day">Half Day</label>
+                        <select name="half_day" id="half_day" class="form-control">
+                            <option value="">Full Day</option>
+                            <option value="morning">Morning</option>
+                            <option value="afternoon">Afternoon</option>
+                        </select>
+                    </div>
+                    <!-- <div class="form-group">
+                        <label for="request_hour_from">Request Hour From</label>
+                        <select name="request_hour_from" id="request_hour_from" class="form-control" >
+                            <option value="">Select Hour</option>
+                            <t t-foreach="[
+                                ('0', '12:00 AM'), ('0.5', '12:30 AM'),
+                                ('1', '1:00 AM'), ('1.5', '1:30 AM'),
+                                ('2', '2:00 AM'), ('2.5', '2:30 AM'),
+                                ('3', '3:00 AM'), ('3.5', '3:30 AM'),
+                                ('4', '4:00 AM'), ('4.5', '4:30 AM'),
+                                ('5', '5:00 AM'), ('5.5', '5:30 AM'),
+                                ('6', '6:00 AM'), ('6.5', '6:30 AM'),
+                                ('7', '7:00 AM'), ('7.5', '7:30 AM'),
+                                ('8', '8:00 AM'), ('8.5', '8:30 AM'),
+                                ('9', '9:00 AM'), ('9.5', '9:30 AM'),
+                                ('10', '10:00 AM'), ('10.5', '10:30 AM'),
+                                ('11', '11:00 AM'), ('11.5', '11:30 AM'),
+                                ('12', '12:00 PM'), ('12.5', '12:30 PM'),
+                                ('13', '1:00 PM'), ('13.5', '1:30 PM'),
+                                ('14', '2:00 PM'), ('14.5', '2:30 PM'),
+                                ('15', '3:00 PM'), ('15.5', '3:30 PM'),
+                                ('16', '4:00 PM'), ('16.5', '4:30 PM'),
+                                ('17', '5:00 PM'), ('17.5', '5:30 PM'),
+                                ('18', '6:00 PM'), ('18.5', '6:30 PM'),
+                                ('19', '7:00 PM'), ('19.5', '7:30 PM'),
+                                ('20', '8:00 PM'), ('20.5', '8:30 PM'),
+                                ('21', '9:00 PM'), ('21.5', '9:30 PM'),
+                                ('22', '10:00 PM'), ('22.5', '10:30 PM'),
+                                ('23', '11:00 PM'), ('23.5', '11:30 PM')
+                            ]" t-as="hour">
+                                <option t-att-value="hour[0]">
+                                    <t t-esc="hour[1]"/>
+                                </option>
+                            </t>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="request_hour_to">Request Hour To</label>
+                        <select name="request_hour_to" id="request_hour_to" class="form-control" >
+                            <option value="">Select Hour</option>
+                            <t t-foreach="[
+                                ('0', '12:00 AM'), ('0.5', '12:30 AM'),
+                                ('1', '1:00 AM'), ('1.5', '1:30 AM'),
+                                ('2', '2:00 AM'), ('2.5', '2:30 AM'),
+                                ('3', '3:00 AM'), ('3.5', '3:30 AM'),
+                                ('4', '4:00 AM'), ('4.5', '4:30 AM'),
+                                ('5', '5:00 AM'), ('5.5', '5:30 AM'),
+                                ('6', '6:00 AM'), ('6.5', '6:30 AM'),
+                                ('7', '7:00 AM'), ('7.5', '7:30 AM'),
+                                ('8', '8:00 AM'), ('8.5', '8:30 AM'),
+                                ('9', '9:00 AM'), ('9.5', '9:30 AM'),
+                                ('10', '10:00 AM'), ('10.5', '10:30 AM'),
+                                ('11', '11:00 AM'), ('11.5', '11:30 AM'),
+                                ('12', '12:00 PM'), ('12.5', '12:30 PM'),
+                                ('13', '1:00 PM'), ('13.5', '1:30 PM'),
+                                ('14', '2:00 PM'), ('14.5', '2:30 PM'),
+                                ('15', '3:00 PM'), ('15.5', '3:30 PM'),
+                                ('16', '4:00 PM'), ('16.5', '4:30 PM'),
+                                ('17', '5:00 PM'), ('17.5', '5:30 PM'),
+                                ('18', '6:00 PM'), ('18.5', '6:30 PM'),
+                                ('19', '7:00 PM'), ('19.5', '7:30 PM'),
+                                ('20', '8:00 PM'), ('20.5', '8:30 PM'),
+                                ('21', '9:00 PM'), ('21.5', '9:30 PM'),
+                                ('22', '10:00 PM'), ('22.5', '10:30 PM'),
+                                ('23', '11:00 PM'), ('23.5', '11:30 PM')
+                            ]" t-as="hour">
+                                <option t-att-value="hour[0]">
+                                    <t t-esc="hour[1]"/>
+                                </option>
+                            </t>
+                        </select>
+                    </div> -->
+                    <div class="form-group">
+                        <label for="name">Description</label>
+                        <input type="text" name="name" id="name" class="form-control" />
+                    </div>
+                    <button type="submit" class="btn btn-primary">Submit</button>
+                </form>
+            </div>
+        </t>
+    </template>
+
+    <template id="success_page" name="Success Page">
+        <t t-call="portal.portal_layout">
+            <div class="container">
+                <h1>Time Off Request Submitted</h1>
+                <p>Your time off request has been successfully submitted.</p>
+            </div>
+        </t>
+    </template>
+
+
+
+
+
+
+
+
+
+
+
+</odoo>

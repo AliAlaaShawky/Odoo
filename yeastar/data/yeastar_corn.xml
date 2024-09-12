@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <!-- Cron job to poll Yeastar API for call logs every 2 minutes -->
+    <record id="ir_cron_poll_yeastar_calls" model="ir.cron">
+        <field name="name">Poll Yeastar for Incoming Calls</field>
+        <field name="model_id" ref="model_incoming_call_log"/>
+        <field name="state">code</field>
+        <field name="code">model.schedule_polling()</field>
+        <field name="interval_number">1</field>
+        <field name="interval_type">minutes</field>
+        <field name="numbercall">-1</field> 
+        <field name="active" eval="True"/>
+    </record>
+</odoo>

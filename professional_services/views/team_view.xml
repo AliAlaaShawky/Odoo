@@ -1,0 +1,88 @@
+<odoo>
+
+  <record id="team_view_tree" model="ir.ui.view">
+      <field name="name"> Team Tree </field>
+      <field name="model">team</field>
+      <field name="arch" type="xml">
+         <tree multi_edit="1"    >
+          <field name ="name"/>
+          <field name ="jop_title"/>
+          <field name ="Department"/>
+          <field name ="work_email" optional="1"/>
+          <field name ="work_mobile" optional="2"/>
+          
+
+
+         </tree>
+      
+      </field>
+  
+  </record>
+
+
+  <record id="team_view_form" model="ir.ui.view">
+      <field name="name"> Team Tree </field>
+      <field name="model">team</field>
+      <field name="arch" type="xml">
+          <form >
+              <sheet>
+                  <div class="oe_title">
+                      <label for="name"/>
+                      <h1 >
+                          <field name ="name"/>   
+                      </h1>
+
+                  </div>
+                  <group>
+
+                      <group string="Genral Info">
+                          
+                          <field name ="jop_title"/>
+                          <field name ="Department"/>
+                    
+                          
+                      </group>
+                      <group string="Addtional Info" >
+                          <field name ="work_email"/>
+                          <field name ="work_mobile" />
+                          
+                      </group>
+                      
+                  </group>
+              </sheet>
+          </form>
+         
+      
+      </field>
+  
+  </record>
+  <record id="team_view_search" model="ir.ui.view">
+      <field name="name"> Team Search </field>
+      <field name="model">team</field>
+      <field name="arch" type="xml">
+         <search>
+          <field name ="name"/>
+          <field name ="work_email"/>
+          <field name ="work_mobile"/>
+          <filter name="group_Department" string="Department" context="{'group_by':'Department'}" />
+
+          <filter name="group_jop_title" string="Jop Title" context="{'group_by':'jop_title'}" />
+
+
+
+
+
+         </search>
+      
+      </field>
+  
+  </record>
+<record id="team_action" model="ir.actions.act_window">
+  <field name="name"> Team </field>
+  <field name="res_model">team</field>
+
+</record>
+<menuitem id="all_team" name="Team members" parent="all_ticket" action="team_action"/>
+
+ 
+</odoo>

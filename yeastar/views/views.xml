@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <!-- Tree view for Yeastar Call Logs -->
+    <record id="view_yeastar_call_log_tree" model="ir.ui.view">
+        <field name="name">incoming.call.log.tree</field>
+        <field name="model">incoming.call.log</field>
+        <field name="arch" type="xml">
+            <tree string="Yeastar Call Logs">
+                <field name="user_id"/>
+                <field name="caller_id"/>
+                <field name="extension_number"/>
+                <field name="call_time"/>
+            </tree>
+        </field>
+    </record>
+
+    <!-- Form view for individual Yeastar Call Log -->
+    <record id="view_yeastar_call_log_form" model="ir.ui.view">
+        <field name="name">incoming.call.log.form</field>
+        <field name="model">incoming.call.log</field>
+        <field name="arch" type="xml">
+            <form string="Yeastar Call Log">
+                <sheet>
+                    <group>
+                        <field name="user_id"/>
+                        <field name="caller_id"/>
+                        <field name="extension_number"/>
+                        <field name="call_time"/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <!-- Menu item to access the Yeastar Call Logs -->
+    
+              <menuitem id="menu_yeastar_call_log_root"
+              name="Yeastar Call Logs"
+              
+              sequence="0"/>
+    <!-- Action to open Yeastar Call Logs -->
+    <record id="action_yeastar_call_log" model="ir.actions.act_window">
+        <field name="name">Yeastar Call Logs</field>
+        <field name="res_model">incoming.call.log</field>
+        <field name="view_mode">tree,form</field>
+        <field name="help" type="html">
+            <p class="oe_view_nocontent_create">
+                No calls found. Try polling the Yeastar API.
+            </p>
+        </field>
+    </record>
+
+    <record id="action_incoming_call_popup" model="ir.actions.client">
+        <field name="name">Incoming Call Popup</field>
+        <field name="tag">incoming_call_popup</field>
+    </record>
+</odoo>

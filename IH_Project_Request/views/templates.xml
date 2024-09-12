@@ -1,0 +1,83 @@
+
+<odoo>
+       
+
+    <template id="portal_my_tasks_inherit" inherit_id="project.portal_my_tasks">
+       <xpath expr="//t[@ t-if='not grouped_tasks']" position="after">
+           <!-- Add a button to create a new task -->
+           <div class="mt16">
+               <th colspan="8">
+                   <a type="button" class="btn btn-primary mt-3 mb-3"  t-attf-href="/create/task" role="button">
+                       Support Request
+                   </a>
+               </th>
+           </div>
+       </xpath>
+   </template>
+
+
+    <record model="ir.ui.view" id="Ih_view_task_form_inherited">
+   <field name="name">project.task.form.inherited</field>
+   <field name="model">project.task</field>
+   <field name="inherit_id" ref="project.view_task_form2"/> <!-- Ensure this reference is correct -->
+   <field name="arch" type="xml">
+       <xpath expr="//field[@name='partner_id']" position="after">
+           <field name="priority" widget="priority" value="3"/>
+       </xpath>
+   </field>
+</record>
+
+<template id="custom_my_tasks_priority_widget_template">
+   <span t-attf-class="o_priority_star fa fa-star#{'' if task.priority in ['1', '2', '3'] else '-o'} #{classes if classes else ''}" t-attf-title="Priority: {{'Normal' if task.priority == '0' else 'Important' if task.priority == '1' else 'High' if task.priority == '2' else 'Very High'}}"/>
+   <span t-attf-class="o_priority_star fa fa-star#{'' if task.priority in ['2', '3'] else '-o'} #{classes if classes else ''}" t-attf-title="Priority: {{'Normal' if task.priority == '0' else 'Important' if task.priority == '1' else 'High' if task.priority == '2' else 'Very High'}}"/>
+   <span t-attf-class="o_priority_star fa fa-star#{'' if task.priority == '3' else '-o'} #{classes if classes else ''}" t-attf-title="Priority: {{'Normal' if task.priority == '0' else 'Important' if task.priority == '1' else 'High' if task.priority == '2' else 'Very High'}}"/>
+</template>
+
+<!-- Inherit Parent View and Replace -->
+<template id="parent_view_inherit" inherit_id="project.portal_tasks_list">
+   <xpath expr="//t[@t-call='project.portal_my_tasks_priority_widget_template']" position="replace">
+       <t t-call="IH_Project_Request.custom_my_tasks_priority_widget_template"/>
+   </xpath>
+      <xpath expr="//thead/tr" position="inside">
+       <!-- Adding new column header for End User -->
+       <th class="text-truncate">End User</th>
+   </xpath>
+   <xpath expr="//tbody/t/tr" position="inside">
+       <!-- Adding new column to display the End User field -->
+       <td class="align-middle lh-1">
+           <span t-field="task.sudo().x_studio_end_user"/>
+       </td>
+   </xpath>
+</template>
+<template id="parent_view_inherit_portal_my_task" inherit_id="project.portal_my_task">
+   <xpath expr="//t[@t-call='project.portal_my_tasks_priority_widget_template']" position="replace">
+       <t t-call="IH_Project_Request.custom_my_tasks_priority_widget_template"/>
+   </xpath>
+      <xpath expr="//div[@class='d-flex flex-column gap-4']" position="inside">
+       <!-- Adding End User Field -->
+       <div t-if="task.x_studio_end_user" class="col-12 d-flex flex-column">
+           <h6><small class="text-muted">End User</small></h6>
+           <div class="o_portal_contact_details d-flex flex-column gap-2">
+               <div class="d-flex justify-content-start align-items-center gap-2">
+                   <img class="o_avatar o_portal_contact_img rounded" t-att-src="image_data_uri(task.x_studio_end_user.avatar_512)"/>
+                   <h6 class="mb-0" t-out="task.x_studio_end_user.name"></h6>
+               </div>
+               <div t-field="task.x_studio_end_user" t-options='{"widget": "contact", "fields": ["email", "phone"]}'/>
+           </div>
+       </div>
+   </xpath>
+</template>
+  <template id="portal_my_projects_inherit" inherit_id="project.portal_my_projects">
+   
+   
+   <xpath expr="//t/tbody/tr" position="inside">
+       <!-- Adding new column to display the End User field -->
+       <td class="text-end">   
+           <span t-field="project.x_studio_end_user"/>
+       </td>
+   </xpath>
+   
+</template>
+
+
+</odoo>

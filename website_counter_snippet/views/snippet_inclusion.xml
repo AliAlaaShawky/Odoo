@@ -1,0 +1,7 @@
+<odoo>
+    <template id="external_snippets" inherit_id="website.snippets" priority="8">
+        <xpath expr="//div[@id='snippet_content']//t[@t-snippet][last()]" position="after">
+            <t t-snippet="website_counter_snippet.counter_snippet"/>
+        </xpath>
+    </template>
+</odoo>

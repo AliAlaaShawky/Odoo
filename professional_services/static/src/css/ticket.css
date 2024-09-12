@@ -1,0 +1,7 @@
+.header_custom table thead >tr >th {
+    background-color:rgba(36, 56, 231, 0.37)  !important;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    font-size: large;
+    color:white !important;    
+    
+}

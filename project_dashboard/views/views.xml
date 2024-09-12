@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+  <!-- Define a client action for the Project Dashboard -->
+  <record id="project_dashboard_action" model="ir.actions.client">
+    <field name="name">Project Dashboard</field>
+    <field name="tag">project_dashboard_main</field>
+  </record>
+
+  <!-- Add a menu item for the Project Dashboard under the main project menu -->
+  <menuitem 
+    id="project_menus_dashboard" 
+    name="Project Dashboard" 
+    action="project_dashboard_action" 
+    parent="project.menu_main_pm"
+    sequence="1"
+    />
+   
+</odoo>

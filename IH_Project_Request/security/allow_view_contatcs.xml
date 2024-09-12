@@ -1,0 +1,14 @@
+
+<odoo>
+ <data noupdate="1">
+<record id="end_user_record_rule" model="ir.rule">
+    <field name="name">User can View the Contacts</field>
+    <field name="model_id" ref="base.model_res_partner"/>
+    <field name="groups" eval="[(4, ref('base.group_portal'))]"/>
+    <field name="perm_read" eval="True"/>
+            <field name="perm_write" eval="False"/>
+            <field name="perm_create" eval="False"/>
+            <field name="perm_unlink" eval="False"/>
+</record>
+</data>
+ </odoo>
