@@ -1,32 +1,4 @@
-<!-- <odoo>
 
-<template id="create_task_form" name="Create Task Form">
-    <t t-call="website.layout">
-        <div class="container">
-            <form action="/create/task/submit" method="post">
-                <t t-if="project_id">
-                    <input type="hidden" name="project_id" t-att-value="project_id"/>
-                </t>
-                <div class="form-group">
-                    <label for="task_name">Task Name</label>
-                    <input type="text" class="form-control" id="task_name" name="task_name" required="required"/>
-                </div>
-                <div class="form-group">
-                    <label for="description">Description</label>
-                    <textarea class="form-control" id="description" name="description"></textarea>
-                </div>
-                
-                <div class="form-group">
-                    <label for="deadline">Deadline</label>
-                    <input type="date" class="form-control" id="deadline" name="deadline"/>
-                </div>
-                <button type="submit" class="btn btn-primary">Create Task</button>
-            </form>
-        </div>
-    </t>
-</template>
-
-</odoo> -->
 <odoo>
     <template id="portal_my_tasks_priority_widget_template" name="Priority Widget Template">
         <div class="priority-widget">
@@ -106,7 +78,7 @@
                         <input id="end_user_input" list="users_datalist" name="end_user_id_display" placeholder="Search For End User" oninput="updateInputValue(this)" />
                         <input type="hidden" id="end_user_id" name="end_user_id" />
                         <datalist id="users_datalist">
-                            <t t-set="end_users" t-value="request.env['project.task'].get_users_for_datalist()"/>
+                            <t t-set="end_users" t-value="request.env['project.task'].sudo().get_users_for_datalist()"/>
                             <t t-foreach="end_users" t-as="end_user">
                                 <option t-att-value="end_user.name" t-att-data-id="end_user.id">
                                     <t t-esc="end_user.name"/>
@@ -116,20 +88,6 @@
                     </div>
 
 
-
-
-                    <!-- <div class="form-group">
-                    <label for="end_user_name">End User</label>
-    
-
-                            <select id="end_user_suggestions">
-                                <t t-foreach="end_users" t-as="end_user">
-                                     <option t-att-value="end_user.id">
-                                            <t t-esc="end_user.name"/>
-                                        </option>
-                                </t>
-                            </select>
-                </div> -->
 
 
                     <div class="form-group">
