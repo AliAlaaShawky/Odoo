@@ -6,6 +6,6 @@ class ProjectTask(models.Model):
     priority = fields.Selection([("0", "low"), ("1", "middle"), ("2", "high"),("3", "very high")], default='0')
     @api.model
     def get_users_for_datalist(self):
-        users = self.env['res.partner'].search([])
+        users = self.env['res.partner'].sudo().search([])
         return users
    
